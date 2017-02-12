@@ -1,17 +1,8 @@
-'scopeName': 'source.yaml'
-'name': 'YAML'
+'scopeName': 'source.yaml.cf'
+'name': 'YAML-CF'
 'fileTypes': [
-  'clang-format'
-  'eslintrc'
-  'eyaml'
-  'eyml'
-  'yaml'
-  'yaml.erb'
-  'yml'
-  'yml.erb'
-  'sls'
-  'sublime-syntax'
-  'Boxfile'
+  '.cf'
+  '.cfyaml'
 ]
 'firstLineMatch': '^(#cloud-config|---)'
 'patterns': [
