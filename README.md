@@ -1,6 +1,10 @@
-# YAML language support in Atom
-[![macOS Build Status](https://travis-ci.org/TWinsnes/language-yaml-cloudformation.svg?branch=master)](https://travis-ci.org/TWinsnes/language-yaml-cloudformation)
+# YAML CloudFormation language support in Atom
+Master: [![macOS Build Status](https://travis-ci.org/TWinsnes/language-yaml-cloudformation.svg?branch=master)](https://travis-ci.org/TWinsnes/language-yaml-cloudformation)
 [![Dependency Status](https://david-dm.org/TWinsnes/language-yaml-cloudformation.svg)](https://david-dm.org/TWinsnes/language-yaml-cloudformation)
+
+Dev: [![macOS Build Status](https://travis-ci.org/TWinsnes/language-yaml-cloudformation.svg?branch=dev)](https://travis-ci.org/TWinsnes/language-yaml-cloudformation)
+[![Dependency Status](https://david-dm.org/TWinsnes/language-yaml-cloudformation.svg)](https://david-dm.org/TWinsnes/language-yaml-cloudformation)
+
 
 Adds syntax highlighting to YAML CloudFormation files in Atom.
 

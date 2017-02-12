@@ -16,6 +16,7 @@
     "url": "https://github.com/TWinsnes/language-yaml-cloudformation/issues"
   },
   "devDependencies": {
-    "coffeelint": "^1.10.1"
+    "coffeelint": "^1.10.1",
+    "jasmine": "^2.5.3"
   }
 }
