@@ -32,7 +32,7 @@ describe "YAML grammar", ->
 
         {tokens} = grammar.tokenizeLine("key: \"I am \\\"escaped\\\"\"")
         expect(tokens[0]).toEqual value: "key", scopes: ["source.yaml", "entity.name.tag.yaml"]
-        expect(tokens[1]).toEqual value: ":", scopes: ["source.yaml", "punctuation.separator.key-value.yaml"]
+        expect(tokens[1]).toEqual value: ":", scopes: ["source.yaml", "entity.name.tag.yaml", "punctuation.separator.key-value.yaml"]
         expect(tokens[2]).toEqual value: " ", scopes: ["source.yaml"]
         expect(tokens[3]).toEqual value: "\"", scopes: ["source.yaml", "string.quoted.double.yaml", "punctuation.definition.string.begin.yaml"]
         expect(tokens[4]).toEqual value: "I am ", scopes: ["source.yaml", "string.quoted.double.yaml"]
