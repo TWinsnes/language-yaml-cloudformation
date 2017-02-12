@@ -1,7 +1,7 @@
 {
-  "name": "language-yaml",
-  "version": "0.28.0",
-  "description": "YAML language support in Atom",
+  "name": "language-yaml-cloudformation",
+  "version": "0.1.0",
+  "description": "YAML CloudFormation language support in Atom",
   "engines": {
     "atom": "*",
     "node": "*"
@@ -9,11 +9,11 @@
   "homepage": "http://atom.github.io/language-yaml",
   "repository": {
     "type": "git",
-    "url": "https://github.com/atom/language-yaml.git"
+    "url": "https://github.com/TWinsnes/language-yaml-cloudformation.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/atom/language-yaml/issues"
+    "url": "https://github.com/TWinsnes/language-yaml-cloudformation/issues"
   },
   "devDependencies": {
     "coffeelint": "^1.10.1"
