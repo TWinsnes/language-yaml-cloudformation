@@ -51,6 +51,9 @@
       {
         'include': '#erb'
       }
+      {
+        'include': '#awsresource'
+      }
     ]
   }
   {
@@ -80,6 +83,9 @@
       }
       {
         'include': '#erb'
+      }
+      {
+        'include': '#awsresource'
       }
     ]
   }
@@ -189,6 +195,21 @@
   }
 ]
 'repository':
+  'awsresource':
+    'match': '[^\\s\'"]+::?[^\\s\'"]+'
+    'name': 'constant.language.yaml'
+  'awsfunction':
+    'match': '(?<=\\s)(![A-Z][^\\s]+)(?=\\s*)'
+    'name': 'keyword.other.tag.local.yaml'
+  'brackets':
+    'begin': '(?<=\\s)\\['
+    'end': '(?=^\\s*(-|[^!{@#%&*>,].*:))'
+    'name': 'string.unquoted.yaml'
+    'patterns': [
+      {
+        'include': '#scalar-content'
+      }
+    ]
   'comment':
     'match': '(?<=^|\\s)((#(?!{)).*)'
     'captures':
@@ -256,6 +277,12 @@
           {
             'include': '#erb'
           }
+          {
+            'include': '#awsfunction'
+          }
+          {
+            'include': '#awsresource'
+          }
         ]
       }
       {
@@ -278,6 +305,12 @@
           {
             'include': '#erb'
           }
+          {
+            'include': '#awsfunction'
+          }
+          {
+            'include': '#awsresource'
+          }
         ]
       }
       {
@@ -297,17 +330,32 @@
           {
             'include': '#erb'
           }
+          {
+            'include': '#awsfunction'
+          }
+          {
+            'include': '#awsresource'
+          }
         ]
       }
       {
-        'match': '[^\\s"\'\\n](?!\\s*#(?!{))([^#\\n]|((?<!\\s)#))*'
-        'name': 'string.unquoted.yaml'
+        'include': '#brackets'
+      }
+      {
+       'match': '[^\\s"\'\\n](?!\\s*#(?!{))([^#\\n]|((?<!\\s)#))*'
+       'name': 'string.unquoted.yaml'
       }
     ]
   'scalar-content':
     'patterns': [
       {
         'include': '#comment'
+      }
+      {
+        'include': '#awsfunction'
+      }
+      {
+        'include': '#awsresource'
       }
       {
         'match': '!(?=\\s)'
