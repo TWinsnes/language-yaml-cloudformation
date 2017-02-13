@@ -6,7 +6,7 @@
     "atom": "*",
     "node": "*"
   },
-  "homepage": "http://atom.github.io/language-yaml",
+  "homepage": "http://TWinsnes.github.io/language-yaml-cloudformation",
   "repository": {
     "type": "git",
     "url": "https://github.com/TWinsnes/language-yaml-cloudformation.git"
