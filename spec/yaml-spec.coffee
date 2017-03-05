@@ -50,37 +50,37 @@ describe "YAML grammar", ->
         expect(tokens[4]).toEqual value: "\"", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "punctuation.definition.string.end.yaml"]
 
         {tokens} = grammar.tokenizeLine('"\\uAb123"')
-        expect(tokens[1]).toEqual value: "\\uAb12", scopes: ["source.yaml", "string.quoted.double.yaml", "constant.character.escape.yaml"]
-        expect(tokens[2]).toEqual value: "3", scopes: ["source.yaml", "string.quoted.double.yaml"]
+        expect(tokens[1]).toEqual value: "\\uAb12", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "constant.character.escape.yaml"]
+        expect(tokens[2]).toEqual value: "3", scopes: ["source.yaml.cf", "string.quoted.double.yaml"]
 
         {tokens} = grammar.tokenizeLine('"\\UAb123Fe90"')
-        expect(tokens[1]).toEqual value: "\\UAb123Fe9", scopes: ["source.yaml", "string.quoted.double.yaml", "constant.character.escape.yaml"]
-        expect(tokens[2]).toEqual value: "0", scopes: ["source.yaml", "string.quoted.double.yaml"]
+        expect(tokens[1]).toEqual value: "\\UAb123Fe9", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "constant.character.escape.yaml"]
+        expect(tokens[2]).toEqual value: "0", scopes: ["source.yaml.cf", "string.quoted.double.yaml"]
 
         {tokens} = grammar.tokenizeLine('"\\x200"')
-        expect(tokens[1]).toEqual value: "\\x20", scopes: ["source.yaml", "string.quoted.double.yaml", "constant.character.escape.yaml"]
-        expect(tokens[2]).toEqual value: "0", scopes: ["source.yaml", "string.quoted.double.yaml"]
+        expect(tokens[1]).toEqual value: "\\x20", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "constant.character.escape.yaml"]
+        expect(tokens[2]).toEqual value: "0", scopes: ["source.yaml.cf", "string.quoted.double.yaml"]
 
         {tokens} = grammar.tokenizeLine('"\\ hi"')
-        expect(tokens[1]).toEqual value: "\\ ", scopes: ["source.yaml", "string.quoted.double.yaml", "constant.character.escape.yaml"]
-        expect(tokens[2]).toEqual value: "hi", scopes: ["source.yaml", "string.quoted.double.yaml"]
+        expect(tokens[1]).toEqual value: "\\ ", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "constant.character.escape.yaml"]
+        expect(tokens[2]).toEqual value: "hi", scopes: ["source.yaml.cf", "string.quoted.double.yaml"]
 
       it "parses invalid escape sequences", ->
         {tokens} = grammar.tokenizeLine('"\\uqerww"')
-        expect(tokens[1]).toEqual value: "\\uqerw", scopes: ["source.yaml", "string.quoted.double.yaml", "invalid.illegal.escape.yaml"]
-        expect(tokens[2]).toEqual value: "w", scopes: ["source.yaml", "string.quoted.double.yaml"]
+        expect(tokens[1]).toEqual value: "\\uqerw", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "invalid.illegal.escape.yaml"]
+        expect(tokens[2]).toEqual value: "w", scopes: ["source.yaml.cf", "string.quoted.double.yaml"]
 
         {tokens} = grammar.tokenizeLine('"\\U0123456GF"')
-        expect(tokens[1]).toEqual value: "\\U0123456G", scopes: ["source.yaml", "string.quoted.double.yaml", "invalid.illegal.escape.yaml"]
-        expect(tokens[2]).toEqual value: "F", scopes: ["source.yaml", "string.quoted.double.yaml"]
+        expect(tokens[1]).toEqual value: "\\U0123456G", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "invalid.illegal.escape.yaml"]
+        expect(tokens[2]).toEqual value: "F", scopes: ["source.yaml.cf", "string.quoted.double.yaml"]
 
         {tokens} = grammar.tokenizeLine('"\\x2Q1"')
-        expect(tokens[1]).toEqual value: "\\x2Q", scopes: ["source.yaml", "string.quoted.double.yaml", "invalid.illegal.escape.yaml"]
-        expect(tokens[2]).toEqual value: "1", scopes: ["source.yaml", "string.quoted.double.yaml"]
+        expect(tokens[1]).toEqual value: "\\x2Q", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "invalid.illegal.escape.yaml"]
+        expect(tokens[2]).toEqual value: "1", scopes: ["source.yaml.cf", "string.quoted.double.yaml"]
 
         {tokens} = grammar.tokenizeLine('"\\c3"')
-        expect(tokens[1]).toEqual value: "\\c", scopes: ["source.yaml", "string.quoted.double.yaml", "invalid.illegal.escape.yaml"]
-        expect(tokens[2]).toEqual value: "3", scopes: ["source.yaml", "string.quoted.double.yaml"]
+        expect(tokens[1]).toEqual value: "\\c", scopes: ["source.yaml.cf", "string.quoted.double.yaml", "invalid.illegal.escape.yaml"]
+        expect(tokens[2]).toEqual value: "3", scopes: ["source.yaml.cf", "string.quoted.double.yaml"]
 
     describe "single quoted", ->
       it "parses escaped single quotes", ->
@@ -359,7 +359,7 @@ describe "YAML grammar", ->
     expect(lines[2][2]).toEqual value: " ", scopes: ["source.yaml.cf"]
     expect(lines[2][3]).toEqual value: "th{ree}", scopes: ["source.yaml.cf", "string.unquoted.yaml"]
 
-    expect(lines[3][0]).toEqual value: "fourth:invalid", scopes: ["source.yaml.cf", "constant.language.yaml"]
+    expect(lines[3][0]).toEqual value: "fourth:invalid", scopes: ["source.yaml.cf", "string.unquoted.yaml"]
 
   it "parses quoted keys", ->
     lines = grammar.tokenizeLines """
@@ -727,7 +727,7 @@ describe "YAML grammar", ->
 
     it "tokenizes document end markers", ->
       {tokens} = grammar.tokenizeLine "..."
-      expect(tokens[0]).toEqual value: "...", scopes: ["source.yaml", "punctuation.definition.document.end.yaml"]
+      expect(tokens[0]).toEqual value: "...", scopes: ["source.yaml.cf", "punctuation.definition.document.end.yaml"]
 
     it "tokenizes structures in an actual YAML document", ->
       lines = grammar.tokenizeLines """
@@ -742,10 +742,10 @@ describe "YAML grammar", ->
         action: grand slam
         ...
       """
-      expect(lines[0][0]).toEqual value: "---", scopes: ["source.yaml", "punctuation.definition.directives.end.yaml"]
-      expect(lines[4][0]).toEqual value: "...", scopes: ["source.yaml", "punctuation.definition.document.end.yaml"]
-      expect(lines[5][0]).toEqual value: "---", scopes: ["source.yaml", "punctuation.definition.directives.end.yaml"]
-      expect(lines[9][0]).toEqual value: "...", scopes: ["source.yaml", "punctuation.definition.document.end.yaml"]
+      expect(lines[0][0]).toEqual value: "---", scopes: ["source.yaml.cf", "punctuation.definition.directives.end.yaml"]
+      expect(lines[4][0]).toEqual value: "...", scopes: ["source.yaml.cf", "punctuation.definition.document.end.yaml"]
+      expect(lines[5][0]).toEqual value: "---", scopes: ["source.yaml.cf", "punctuation.definition.directives.end.yaml"]
+      expect(lines[9][0]).toEqual value: "...", scopes: ["source.yaml.cf", "punctuation.definition.document.end.yaml"]
 
   describe "tabs", ->
     it "marks them as invalid", ->
